@@ -11,11 +11,20 @@
         }
       },
       {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
+        "state": {
+          "branch": null,
+          "revision": "173f567a2dfec11d74588eea82cecea555bdc0bc",
+          "version": "1.4.0"
+        }
+      },
+      {
         "package": "swift-webster",
         "repositoryURL": "https://github.com/aaronland/swift-webster",
         "state": {
           "branch": "master",
-          "revision": "14bd11f6761fe6dc79e25fb0124dac13899016ff",
+          "revision": "3a5a4c10c156495c8494f6a3e973ec694a8f30b0",
           "version": null
         }
       }

@@ -28,10 +28,21 @@ struct WebsterCLI: ParsableCommand {
             fatalError("Invalid source URL.")
         }
           
-        guard let target_url = URL(string: destination) else {
-                        fatalError("Invalid destination URL.")
+        guard var target_url = URL(string: destination) else {
+              fatalError("Invalid destination URL.")
         }
 
+        if target_url.scheme == nil {
+            
+            let new_destination = "file://" + target_url.absoluteString
+                        
+            guard let new_target = URL(string: new_destination) else {
+                fatalError("Invalid destination URL.")
+            }
+            
+            target_url = new_target
+        }
+                
         let w = Webster()
 
         w.dpi = dpi
@@ -39,10 +50,18 @@ struct WebsterCLI: ParsableCommand {
         w.height = height
         w.margin = margin
         
-        let result = w.run(source: source_url, target: target_url)
+        let result = w.render(source: source_url)
             
-        if case .failure(let error) = result {
+        switch result {
+        case .failure(let error):
             fatalError("Failed to generate PDF file, \(error.localizedDescription)")
+        case .success (let data):
+ 
+            do {
+                try data.write(to: target_url)
+            } catch (let error) {
+                fatalError("Failed to save PDF file, \(error.localizedDescription)")
+            }
         }
 
     }
