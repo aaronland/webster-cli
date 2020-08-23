@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "15351c1cd009eba0b6e438bfef55ea9847a8dc4a",
+          "version": "0.3.0"
+        }
+      },
+      {
+        "package": "swift-webster",
+        "repositoryURL": "https://github.com/aaronland/swift-webster",
+        "state": {
+          "branch": "master",
+          "revision": "14bd11f6761fe6dc79e25fb0124dac13899016ff",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
