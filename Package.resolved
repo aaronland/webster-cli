@@ -23,9 +23,9 @@
         "package": "swift-webster",
         "repositoryURL": "https://github.com/aaronland/swift-webster",
         "state": {
-          "branch": "master",
-          "revision": "3a5a4c10c156495c8494f6a3e973ec694a8f30b0",
-          "version": null
+          "branch": null,
+          "revision": "92260f96d7aafc3d3edfc27e68f8e768b50989c6",
+          "version": "0.0.1"
         }
       }
     ]

@@ -50,20 +50,22 @@ struct WebsterCLI: ParsableCommand {
         w.height = height
         w.margin = margin
         
-        let result = w.render(source: source_url)
+        func on_complete(result: Result<Data, Error>) -> Void {
             
-        switch result {
-        case .failure(let error):
-            fatalError("Failed to generate PDF file, \(error.localizedDescription)")
-        case .success (let data):
- 
-            do {
-                try data.write(to: target_url)
-            } catch (let error) {
-                fatalError("Failed to save PDF file, \(error.localizedDescription)")
+            switch result {
+            case .failure(let error):
+                fatalError("Failed to generate PDF file, \(error.localizedDescription)")
+            case .success (let data):
+     
+                do {
+                    try data.write(to: target_url)
+                } catch (let error) {
+                    fatalError("Failed to save PDF file, \(error.localizedDescription)")
+                }
             }
         }
-
+        
+        w.render(source: source_url, completionHandler: on_complete)
     }
 }
 
