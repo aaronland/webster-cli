@@ -2,11 +2,15 @@ import Foundation
 import ArgumentParser
 import Webster
 
+public enum Errors: Error {
+    case invalidURL
+}
+
 struct WebsterCLI: ParsableCommand {
     
     @Argument(help: "The URL you want to generate a PDF from.")
     var source: String
-       
+    
     @Argument(help: "The path where your PDF document will be created.")
     var destination: String
     
@@ -23,28 +27,30 @@ struct WebsterCLI: ParsableCommand {
     var margin: Double = 1.0
     
     func run() {
-                
-        guard let source_url = URL(string: source) else {
-            fatalError("Invalid source URL.")
+        
+        var source_url: URL!
+        var target_url: URL!
+        
+        let source_result = newURL(url: source)
+        
+        switch source_result {
+        case .failure(let error):
+            fatalError(error.localizedDescription)
+        case .success(let u):
+            source_url = u
         }
-          
-        guard var target_url = URL(string: destination) else {
-              fatalError("Invalid destination URL.")
+        
+        let target_result = newURL(url: destination)
+        
+        switch target_result {
+        case .failure(let error):
+            fatalError(error.localizedDescription)
+        case .success(let u):
+            target_url = u
         }
-
-        if target_url.scheme == nil {
-            
-            let new_destination = "file://" + target_url.absoluteString
-                        
-            guard let new_target = URL(string: new_destination) else {
-                fatalError("Invalid destination URL.")
-            }
-            
-            target_url = new_target
-        }
-                
+        
         let w = Webster()
-
+        
         w.dpi = dpi
         w.width = width
         w.height = height
@@ -56,7 +62,7 @@ struct WebsterCLI: ParsableCommand {
             case .failure(let error):
                 fatalError("Failed to generate PDF file, \(error.localizedDescription)")
             case .success (let data):
-     
+                
                 do {
                     try data.write(to: target_url)
                 } catch (let error) {
@@ -66,6 +72,27 @@ struct WebsterCLI: ParsableCommand {
         }
         
         w.render(source: source_url, completionHandler: on_complete)
+    }
+    
+    private func newURL(url: String) -> Result<URL, Error> {
+        
+        guard var u = URL(string: url) else {
+            return .failure(Errors.invalidURL)
+        }
+        
+        
+        if u.scheme == nil {
+            
+            let new_url = "file://" + u.absoluteString
+            
+            guard let new_u = URL(string: new_url) else {
+                return .failure(Errors.invalidURL)
+            }
+            
+            u = new_u
+        }
+        
+        return .success(u)
     }
 }
 
