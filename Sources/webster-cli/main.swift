@@ -27,7 +27,7 @@ struct WebsterCLI: ParsableCommand {
     var margin: Double = 1.0
 
     @Option(help: "The bleed (in inches) for each page in your document.")
-    var bleed Double = 0.0
+    var bleed: Double = 0.0
     
     func run() {
         
