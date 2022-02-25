@@ -59,14 +59,14 @@ struct WebsterCLI: ParsableCommand {
         w.height = height
         w.margin = margin
         w.bleed = bleed
-	
+	        
         func on_complete(result: Result<Data, Error>) -> Void {
             
             switch result {
             case .failure(let error):
                 fatalError("Failed to generate PDF file, \(error.localizedDescription)")
             case .success (let data):
-                
+                                
                 do {
                     try data.write(to: target_url)
                 } catch (let error) {
