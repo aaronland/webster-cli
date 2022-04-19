@@ -26,7 +26,7 @@ OPTIONS:
 
 ## Credits
 
-This build's on @msmollin's original [webster](https://github.com/msmollin/webster) and currently exists as a separate project because it is full of Swift Package Manager -isms and I am not sure what the best way to create a PR is yet.
+This build's on @msmollin's original [webster](https://github.com/msmollin/webster).
 
 ## See also
 
