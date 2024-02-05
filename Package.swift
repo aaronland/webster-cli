@@ -9,8 +9,8 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.2"),
-        .package(url: "https://github.com/aaronland/swift-webster", from: "0.0.3")
-        // .package(url: "file:///Users/asc/code/swift-webster", .branch("dev"))
+        // .package(url: "https://github.com/aaronland/swift-webster", from: "0.0.3")
+        .package(path: "/usr/local/aaronland/swift-webster")
 
     ],
     targets: [
@@ -22,9 +22,6 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "Webster", package: "swift-webster"),
             ]),
-        .testTarget(
-            name: "webster-cliTests",
-            dependencies: ["webster-cli"]),
     ]
 )
 
