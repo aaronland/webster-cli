@@ -17,15 +17,6 @@
         "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
         "version" : "1.6.1"
       }
-    },
-    {
-      "identity" : "swift-webster",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aaronland/swift-webster",
-      "state" : {
-        "revision" : "c37f55928f2744fe57f0811dd57ba1190798f58a",
-        "version" : "0.0.4"
-      }
     }
   ],
   "version" : 2
