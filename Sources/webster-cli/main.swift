@@ -1,6 +1,7 @@
 import Foundation
 import ArgumentParser
 import Webster
+import Logging
 
 public enum Errors: Error {
     case invalidURL
@@ -28,6 +29,9 @@ struct WebsterCLI: ParsableCommand {
 
     @Option(help: "The bleed (in inches) for each page in your document.")
     var bleed: Double = 0.0
+    
+    @Option(help: "Enable verbose (debug) logging.")
+    var verbose: Bool = false
     
     func run() {
         
@@ -59,7 +63,12 @@ struct WebsterCLI: ParsableCommand {
         w.height = height
         w.margin = margin
         w.bleed = bleed
-	        
+	      
+        if verbose {
+            w.setLogLevel(level: .debug)
+            // w.logger.debug("Verbose logging enabled")
+        }
+        
         func on_complete(result: Result<Data, Error>) -> Void {
             
             switch result {
