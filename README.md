@@ -4,7 +4,7 @@ A command-line tool for generating a PDF file from a URL (rendered by WebKit).
 
 ## Deprecation notice
 
-This package has been deprecated. Its functionality has been moved in to [aaronland/swift-webster](https://github.com/aaronland/swift-webster).
+This package has been deprecated. Its functionality has been moved in to [aaronland/swift-webster](https://github.com/aaronland/swift-webster#command-line-tool)
 
 ## Example
 
